@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bluetooth Chat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <h1>Bluetooth Chat</h1>
+
+        <div class="panel">
+          <label for="userName">Your name</label>
+          <input id="userName" type="text" maxlength="24" placeholder="Alice" />
+        </div>
+
+        <div class="panel">
+          <button id="createRoomBtn" class="primary">Create new room</button>
+        </div>
+
+        <div class="panel">
+          <label for="joinRoomId">Room ID</label>
+          <input id="joinRoomId" type="text" maxlength="20" placeholder="ROOM-ABC123" />
+          <button id="joinRoomBtn">Join room</button>
+        </div>
+
+        <div class="panel room-list-block">
+          <h2>Rooms</h2>
+          <ul id="roomList"></ul>
+        </div>
+      </aside>
+
+      <main class="chat-panel">
+        <header class="chat-header">
+          <div>
+            <p class="label">Current room</p>
+            <h2 id="currentRoomLabel">No room joined</h2>
+          </div>
+          <button id="deleteRoomBtn" class="danger">Delete room</button>
+        </header>
+
+        <div id="status" class="status">Create or join a room to begin.</div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+
+        <form id="messageForm" class="composer">
+          <input id="messageInput" type="text" maxlength="300" placeholder="Type a message..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
