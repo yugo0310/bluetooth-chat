@@ -1,52 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bluetooth Chat</title>
+    <title>ローカルチャット</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="app-shell">
       <aside class="sidebar">
-        <h1>Bluetooth Chat</h1>
-
-        <div class="panel">
-          <label for="userName">Your name</label>
-          <input id="userName" type="text" maxlength="24" placeholder="Alice" />
+        <div class="brand">
+          <span class="brand-mark">吹</span>
+          <div>
+            <h1>ローカルチャット</h1>
+            <p>このPCだけで使えます</p>
+          </div>
         </div>
 
-        <div class="panel">
-          <button id="createRoomBtn" class="primary">Create new room</button>
-        </div>
+        <section class="setup-card" aria-label="参加設定">
+          <label for="userName">あなたのID</label>
+          <input id="userName" type="text" maxlength="24" placeholder="例：ゆうご" autocomplete="nickname" />
 
-        <div class="panel">
-          <label for="joinRoomId">Room ID</label>
-          <input id="joinRoomId" type="text" maxlength="20" placeholder="ROOM-ABC123" />
-          <button id="joinRoomBtn">Join room</button>
-        </div>
+          <button id="createRoomBtn" class="primary">新しいルームを作る</button>
 
-        <div class="panel room-list-block">
-          <h2>Rooms</h2>
+          <label for="joinRoomId">ルームIDで参加</label>
+          <div class="join-row">
+            <input id="joinRoomId" type="text" maxlength="20" placeholder="ROOM-ABC123" autocomplete="off" />
+            <button id="joinRoomBtn" aria-label="ルームに参加">参加</button>
+          </div>
+        </section>
+
+        <section class="room-list-block">
+          <h2>このPCのルーム</h2>
           <ul id="roomList"></ul>
-        </div>
+        </section>
+
+        <p class="local-note">データはこのブラウザ内に保存されます。別のPCへは送信されません。</p>
       </aside>
 
       <main class="chat-panel">
         <header class="chat-header">
-          <div>
-            <p class="label">Current room</p>
-            <h2 id="currentRoomLabel">No room joined</h2>
+          <div class="room-heading">
+            <span class="online-dot" aria-hidden="true"></span>
+            <div>
+              <p class="label">参加中のルーム</p>
+              <h2 id="currentRoomLabel">ルーム未選択</h2>
+            </div>
           </div>
-          <button id="deleteRoomBtn" class="danger">Delete room</button>
+          <button id="deleteRoomBtn" class="danger">ルームを削除</button>
         </header>
 
-        <div id="status" class="status">Create or join a room to begin.</div>
+        <div id="status" class="status" role="status">IDを入力して、ルームを作成または参加してください。</div>
         <div id="messages" class="messages" aria-live="polite"></div>
 
         <form id="messageForm" class="composer">
-          <input id="messageInput" type="text" maxlength="300" placeholder="Type a message..." autocomplete="off" />
-          <button type="submit">Send</button>
+          <input id="messageInput" type="text" maxlength="300" placeholder="メッセージを入力" autocomplete="off" />
+          <button type="submit" aria-label="メッセージを送信">送信</button>
         </form>
       </main>
     </div>
